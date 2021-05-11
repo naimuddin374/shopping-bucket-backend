@@ -1,15 +1,23 @@
 require('dotenv').config()
 const express = require('express')
-const morgan = require('morgan')
 const cors = require('cors')
 const path = require('path')
+const mongoose = require('mongoose')
+const { useMorgan } = require('./middlewares')
+
 
 const app = express()
 app.use(cors())
-app.use(morgan('dev'))
+useMorgan(app)
+
 app.use(express.static(path.join(__dirname, '../', 'public')))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+
+
+mongoose.connect(process.env.DATABASE, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Database connected.'))
+    .catch(err => console.log(err))
 
 
 app.get('/', (req, res) => {
