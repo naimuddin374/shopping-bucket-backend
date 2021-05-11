@@ -20,6 +20,7 @@
   "homepage": "https://github.com/naimuddin374/shopping-bucket-backend#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^9.0.2",
     "express": "^4.17.1",
     "mongose": "0.0.2-security",
     "morgan": "^1.10.0"
